@@ -20,3 +20,12 @@
   --radius-md: 16px;                     /* filter bar & mid-size surfaces */
   --radius-lg: 24px;                     /* large card surfaces */
 }
+
+body {
+  color: var(--color-text-default);
+  background: 
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 22%),
+    linear-gradient(var(--color-bg-page-top), var(--color-bg-page), var(--color-bg-page-bottom));
+  min-height: 100dvh;
+}
