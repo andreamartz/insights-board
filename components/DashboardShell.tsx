@@ -2,13 +2,13 @@
 const DashboardShell = () => {
   return (
     <main className="text-text-muted max-w-7xl py-12 px-4 mx-auto flex flex-col gap-8 sm:px-6 lg:px-8">
-      <header aria-labelledby="hero-heading" className="flex flex-col gap-y-3 p-8 rounded-lg bg-bg-surface shadow-xl">
+      <header aria-labelledby="hero-heading" className="flex flex-col gap-y-3 p-8 rounded-lg bg-bg-surface shadow-md border border-border-default">
         <h1 id="hero-heading" className="font-bold text-4xl md:text-5xl text-text-strong">Insights Board</h1>
         <p className="text-xl md:text-2xl text-text-muted">Get a clean read on revenue, reach, and conversion signals across your active campaigns.</p>
       </header>
-      <section aria-labelledby="filters-heading" className="bg-bg-surface p-6 rounded-lg shadow-xl">
-        <h2 id="filters-heading" className="text-text-strong">Global filters</h2>
-        <div className="flex flex-col gap-y-6 sm:flex-row sm:gap-x-8">
+      <section aria-labelledby="filters-heading" className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default">
+        <h2 id="filters-heading" className="text-text-strong font-medium">Global filters</h2>
+        <div className="flex flex-col gap-y-6 sm:flex-row sm:gap-x-8 text-sm">
           <div className="flex flex-col gap-y-2">
             <label htmlFor="date-range" className="text-sm">Date range</label>
             <select name="date-range" id="date-range" defaultValue="30d" 
@@ -47,21 +47,21 @@ const DashboardShell = () => {
         </div>
       </section>
       <section aria-label="Dashboard widgets" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-        <article className="bg-bg-surface p-6 rounded-lg shadow-xl">
-          <h2>Revenue</h2>
-          <p>Placeholder for a KPI summary card.</p>
+        <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
+          <h2 className="text-base text-text-strong font-medium">Revenue</h2>
+          <p className="text-text-muted text-sm">Placeholder for a KPI summary card.</p>
         </article>
-        <article className="bg-bg-surface p-6 rounded-lg shadow-xl">
-          <h2>CTR trend</h2>
-          <p>Placeholder for a line chart showing performance over time.</p>
+        <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
+          <h2 className="text-base text-text-strong font-medium">CTR trend</h2>
+          <p className="text-text-muted text-sm">Placeholder for a line chart showing performance over time.</p>
         </article>
-        <article className="bg-bg-surface p-6 rounded-lg shadow-xl">
-          <h2>Category breakdown</h2>
-          <p>Placeholder for a bar chart comparing campaign categories.</p>
+        <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
+          <h2 className="text-base text-text-strong font-medium">Category breakdown</h2>
+          <p className="text-text-muted text-sm">Placeholder for a bar chart comparing campaign categories.</p>
         </article>
-        <article className="bg-bg-surface p-6 rounded-lg shadow-xl">
-          <h2>Channel mix</h2>
-          <p>Placeholder for a second summary or comparison widget.</p>
+        <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
+          <h2 className="text-base text-text-strong font-medium">Channel mix</h2>
+          <p className="text-text-muted text-sm">Placeholder for a second summary or comparison widget.</p>
         </article>
       </section>
     </main>
