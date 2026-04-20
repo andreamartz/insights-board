@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg-page: #eef2ec;              /* page background */
+  --color-bg-page-top: #f6f8f3;          /* gradient top */
+  --color-bg-page-bottom: #e9eeea;       /* gradient bottom */
+  --color-bg-surface: #ffffff;           /* cards and panels */
+  --color-bg-surface-soft: #f7f8f7;      /* inset areas inside cards */
+  --color-text-strong: #171a1f;          /* headings and KPI values */
+  --color-text-default: #2f3742;         /* most body text */
+  --color-text-muted: #667085;           /* labels, helper text, secondary info */
+  --color-text-inverse: #ffffff;         /* text on dark backgrounds */
+  --color-border-default: #dde3dd;       /* standard border for cards and inputs */
+  --color-border-strong: #c9d4cc;        /* more visible border for emphasis or focus states */
+  --color-accent-primary: #0f766e;       /* for badges, highlights, & active states */
+  --color-accent-primary-soft: #d6f3ef;  /* badge backgrounds & tinted surfaces */
+  --color-accent-secondary: #0369a1;     /* focus rings & secondary highlights */
+  --color-accent-secondary-soft: #dbeffd; /* tinted backgrounds that use the secondary accent */
+  --radius-sm: 10px;                     /* small controls like inputs and selects */
+  --radius-md: 16px;                     /* filter bar & mid-size surfaces */
+  --radius-lg: 24px;                     /* large card surfaces */
+}
