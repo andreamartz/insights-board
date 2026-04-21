@@ -1,6 +1,6 @@
 'use client';
 
-import { useReducer } from "react";
+import { useReducer, type ChangeEvent } from "react";
 import { initialDashboardState } from "@/lib/dashboard/initialState";
 import dashboardReducer from "@/lib/dashboard/reducer";
 import {
@@ -24,6 +24,39 @@ const DashboardShell = () => {
     return value === "all" || value === "search" || value === "display" || value === "email";
   };
 
+  const handleFiltersStateUpdate = (event: ChangeEvent<HTMLSelectElement>): void => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    switch (name) {
+      case "date-range":
+        if (isDateRange(value)) {
+          dispatch({
+            type: "filters/setDateRange",
+            payload: value
+          });
+        }
+        break;
+      case "category":
+        if (isCategoryFilter(value)) {
+          dispatch({
+            type: "filters/setCategory",
+            payload: value
+          });
+        }
+        break;
+      case "channel":
+        if (isChannelFilter(value)) {
+          dispatch({
+            type: "filters/setChannel",
+            payload: value
+          });
+        }
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <main className="text-text-muted max-w-7xl py-12 px-4 mx-auto flex flex-col gap-8 sm:px-6 lg:px-8">
       <header 
@@ -44,7 +77,8 @@ const DashboardShell = () => {
             <select 
               name="date-range"
               id="date-range"
-              defaultValue="30d" 
+              value={state.filters.dateRange}
+              onChange={handleFiltersStateUpdate}
               className="border rounded-sm border-border-default px-4 h-12 bg-bg-surface-soft
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary focus-visible:ring-offset-2
               focus-visible:ring-offset-bg-surface focus-visible:border-accent-secondary"
@@ -59,7 +93,8 @@ const DashboardShell = () => {
             <select
               name="category"
               id="category"
-              defaultValue="all" 
+              value={state.filters.category}
+              onChange={handleFiltersStateUpdate}
               className="border rounded-sm border-border-default px-4 h-12 bg-bg-surface-soft
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary focus-visible:ring-offset-2
               focus-visible:ring-offset-bg-surface focus-visible:border-accent-secondary"
@@ -75,7 +110,8 @@ const DashboardShell = () => {
             <select 
               name="channel"
               id="channel" 
-              defaultValue="all" 
+              value={state.filters.channel}
+              onChange={handleFiltersStateUpdate}
               className="border rounded-sm border-border-default px-4 h-12 bg-bg-surface-soft
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-secondary focus-visible:ring-offset-2
               focus-visible:ring-offset-bg-surface focus-visible:border-accent-secondary"
