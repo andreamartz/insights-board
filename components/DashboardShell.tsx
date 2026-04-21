@@ -3,9 +3,27 @@
 import { useReducer } from "react";
 import { initialDashboardState } from "@/lib/dashboard/initialState";
 import dashboardReducer from "@/lib/dashboard/reducer";
+import {
+  CategoryFilter,
+  ChannelFilter,
+  DateRange,
+} from "@/types/dashboard";
 
 const DashboardShell = () => {
   const [ state, dispatch ] = useReducer(dashboardReducer, initialDashboardState);
+
+  const isDateRange = (value: string): value is DateRange => {
+    return value === "7d" || value === "30d" || value === "90d";
+  };
+
+  const isCategoryFilter = (value: string): value is CategoryFilter => {
+    return value === "all" || value === "tech" || value === "office" || value === "furniture";
+  };
+
+  const isChannelFilter = (value: string): value is ChannelFilter => {
+    return value === "all" || value === "search" || value === "display" || value === "email";
+  };
+
   return (
     <main className="text-text-muted max-w-7xl py-12 px-4 mx-auto flex flex-col gap-8 sm:px-6 lg:px-8">
       <header 
