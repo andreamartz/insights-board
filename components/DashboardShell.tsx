@@ -7,21 +7,24 @@ import {
   CategoryFilter,
   ChannelFilter,
   DateRange,
+  DATE_RANGE_OPTIONS,
+  CATEGORY_FILTER_OPTIONS,
+  CHANNEL_FILTER_OPTIONS,
 } from "@/types/dashboard";
 
 const DashboardShell = () => {
   const [ state, dispatch ] = useReducer(dashboardReducer, initialDashboardState);
 
   const isDateRange = (value: string): value is DateRange => {
-    return value === "7d" || value === "30d" || value === "90d";
+    return DATE_RANGE_OPTIONS.includes(value as DateRange);
   };
 
   const isCategoryFilter = (value: string): value is CategoryFilter => {
-    return value === "all" || value === "tech" || value === "office" || value === "furniture";
+    return CATEGORY_FILTER_OPTIONS.includes(value as CategoryFilter);
   };
 
   const isChannelFilter = (value: string): value is ChannelFilter => {
-    return value === "all" || value === "search" || value === "display" || value === "email";
+    return CHANNEL_FILTER_OPTIONS.includes(value as ChannelFilter);
   };
 
   const handleFiltersStateUpdate = (event: ChangeEvent<HTMLSelectElement>): void => {
