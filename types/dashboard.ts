@@ -46,3 +46,5 @@ export type DashboardAction =
   | { type: 'filters/setChannel', payload: ChannelFilter }
   | { type: 'widget/add', payload: Widget }
   | { type: 'widget/remove', payload: Pick<Widget, 'id'> };
+
+export type IsoDateString = `${number}-${number}-${number}`;
