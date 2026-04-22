@@ -1,8 +1,13 @@
-export type DateRange = '7d' | '30d' | '90d';
-export type Category = 'tech' | 'office' | 'furniture';
-export type Channel = 'search' | 'display' | 'email';
-export type CategoryFilter = 'all' | Category;
-export type ChannelFilter = 'all' | Channel;
+export const DATE_RANGE_OPTIONS = ['7d', '30d', '90d'] as const;
+export type DateRange = (typeof DATE_RANGE_OPTIONS)[number];
+
+export const CATEGORY_FILTER_OPTIONS = ['all', 'tech', 'office', 'furniture'] as const;
+export type CategoryFilter = (typeof CATEGORY_FILTER_OPTIONS)[number];
+export type Category = Exclude<CategoryFilter, 'all'>;
+
+export const CHANNEL_FILTER_OPTIONS = ['all', 'search', 'display', 'email'] as const;
+export type ChannelFilter = (typeof CHANNEL_FILTER_OPTIONS)[number];
+export type Channel = Exclude<ChannelFilter, 'all'>;
 
 export type RawMetricRecord = {
   date: string;
