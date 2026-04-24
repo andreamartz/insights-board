@@ -2,7 +2,9 @@ import {
   RawMetricRecord,
   Filters,
   DateRange,
-  IsoDateString
+  IsoDateString,
+  Metric,
+  Category,
 } from "@/types/dashboard";
 
 const DATE_RANGE_LOOKUP: Record<DateRange, number> = {
@@ -41,4 +43,46 @@ export const filterRecords = (
       const dateMatch = record.date >= cutoffDate; 
       return dateMatch && categoryMatch && channelMatch;
     });
+}
+
+/**
+ * Sum a metric across records.
+ */
+export function sumMetric(
+  records: RawMetricRecord[],
+  metric: Exclude<Metric, "ctr">
+): number {
+  return records.reduce((total, record) => total + record[metric], 0);
+}
+
+/**
+ * Calculate CTR as total clicks / total impressions.
+ */
+export function calculateCtr(records: RawMetricRecord[]): number {
+  const totalClicks: number = sumMetric(records, "clicks");
+  const totalImpressions: number = sumMetric(records, "impressions");
+  
+  return totalImpressions === 0 ? 0 : totalClicks / totalImpressions;
+}
+
+/**
+ * Group by date and sum selected metric.
+ */
+export function buildTrendData(
+  records: RawMetricRecord[],
+  metric: Exclude<Metric, "ctr">
+): Array<{ date: string; value: number }> {
+  // TODO: implement
+  return [];
+}
+
+/**
+ * Group by category and sum selected metric.
+ */
+export function buildCategoryComparison(
+  records: RawMetricRecord[],
+  metric: Exclude<Metric, "ctr">
+): Array<{ category: Category; value: number }> {
+  // TODO: implement
+  return [];
 }
