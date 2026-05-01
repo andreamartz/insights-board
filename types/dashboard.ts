@@ -10,7 +10,7 @@ export type ChannelFilter = (typeof CHANNEL_FILTER_OPTIONS)[number];
 export type Channel = Exclude<ChannelFilter, 'all'>;
 
 export type RawMetricRecord = {
-  date: string;
+  date: IsoDateString;
   category: Category;
   channel: Channel;
   revenue: number;
@@ -48,3 +48,8 @@ export type DashboardAction =
   | { type: 'widget/remove', payload: Pick<Widget, 'id'> };
 
 export type IsoDateString = `${number}-${number}-${number}`;
+
+export type AggregatedMetricRecord =
+| { date: IsoDateString; revenue: number }
+| { date: IsoDateString; clicks: number }
+| { date: IsoDateString; impressions: number };
