@@ -71,9 +71,19 @@ export function calculateCtr(records: RawMetricRecord[]): number {
 export function buildTrendData(
   records: RawMetricRecord[],
   metric: Exclude<Metric, "ctr">
-): Array<{ date: string; value: number }> {
-  // TODO: implement
-  return [];
+): AggregatedMetricRecord[] {
+
+  if (records.length === 0) return [];
+  const recordsWithAscDates = records.sort((a, b) => a.date.localeCompare(b.date));
+  const grouped = new Map<IsoDateString, number>();
+
+  for (const record of recordsWithAscDates) {
+    const current = grouped.get(record.date) ?? 0;
+    grouped.set(record.date, current + record[metric]);
+  }
+
+  return Array.from(grouped.entries())
+    .map(([date, value]) => ({ date, [metric]: value } as AggregatedMetricRecord));
 }
 
 /**
