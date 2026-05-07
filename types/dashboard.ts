@@ -53,3 +53,8 @@ export type AggregatedMetricRecord =
   | { date: IsoDateString; revenue: number }
   | { date: IsoDateString; clicks: number }
   | { date: IsoDateString; impressions: number };
+
+export type AggregatedCategoryRecord = 
+  | { category: Category; revenue: number }
+  | { category: Category; clicks: number }
+  | { category: Category; impressions: number }
