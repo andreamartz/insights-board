@@ -50,6 +50,6 @@ export type DashboardAction =
 export type IsoDateString = `${number}-${number}-${number}`;
 
 export type AggregatedMetricRecord =
-| { date: IsoDateString; revenue: number }
-| { date: IsoDateString; clicks: number }
-| { date: IsoDateString; impressions: number };
+  | { date: IsoDateString; revenue: number }
+  | { date: IsoDateString; clicks: number }
+  | { date: IsoDateString; impressions: number };
