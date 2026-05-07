@@ -5,6 +5,8 @@ import {
   IsoDateString,
   Metric,
   Category,
+  AggregatedMetricRecord,
+  AggregatedCategoryRecord
 } from "@/types/dashboard";
 
 const DATE_RANGE_LOOKUP: Record<DateRange, number> = {
