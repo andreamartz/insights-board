@@ -92,7 +92,16 @@ export function buildTrendData(
 export function buildCategoryComparison(
   records: RawMetricRecord[],
   metric: Exclude<Metric, "ctr">
-): Array<{ category: Category; value: number }> {
-  // TODO: implement
-  return [];
+): AggregatedCategoryRecord[] {
+
+  if (records.length === 0) return [];
+  const grouped = new Map<Category, number>();
+
+  for (const record of records) {
+    const current = grouped.get(record.category) ?? 0;
+    grouped.set(record.category, current + record[metric]);
+  }
+  
+  return Array.from(grouped.entries())
+    .map(([category, value]) => ({ category, [metric]: value } as AggregatedCategoryRecord));
 }
