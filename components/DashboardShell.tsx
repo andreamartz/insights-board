@@ -11,6 +11,12 @@ import {
   CATEGORY_FILTER_OPTIONS,
   CHANNEL_FILTER_OPTIONS,
 } from "@/types/dashboard";
+import metricRecords from "@/lib/data/mockData";
+import {
+  filterRecords,
+  sumMetric,
+} from "@/lib/dashboard/selectors";
+import KPIWidget from "@/components/KPIWidget";
 
 const DashboardShell = () => {
   const [ state, dispatch ] = useReducer(dashboardReducer, initialDashboardState);
@@ -60,6 +66,10 @@ const DashboardShell = () => {
         break;
     }
   };
+
+  const filteredRecords = filterRecords(metricRecords, state.filters);
+  const revenue = sumMetric(filteredRecords, "revenue");
+
   return (
     <main className="text-text-muted max-w-7xl py-12 px-4 mx-auto flex flex-col gap-8 sm:px-6 lg:px-8">
       <header 
@@ -133,7 +143,11 @@ const DashboardShell = () => {
       >
         <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
           <h2 className="text-base text-text-strong font-medium">Revenue</h2>
-          <p className="text-text-muted text-sm">Placeholder for a KPI summary card.</p>
+          <KPIWidget
+            value={revenue}
+            format="currency"
+            helperText={`Filtered by ${state.filters.dateRange}, ${state.filters.category}, ${state.filters.channel}`}
+          />
         </article>
         <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">
           <h2 className="text-base text-text-strong font-medium">CTR trend</h2>
