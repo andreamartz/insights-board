@@ -69,6 +69,39 @@ const DashboardShell = () => {
 
   const filteredRecords = filterRecords(metricRecords, state.filters);
   const revenue = sumMetric(filteredRecords, "revenue");
+  const getFilterSummaryText = () => {
+    const dateLabelMapping: Record<typeof state.filters.dateRange, string> = {
+      "7d": "Last 7 days",
+      "30d": "Last 30 days",
+      "90d": "Last 90 days",
+    };
+
+    const categoryLabelMapping: Record<typeof state.filters.category, string> = {
+      "all": "All categories",
+      "furniture": "Furniture category",
+      "office": "Office category",
+      "tech": "Tech category",
+    };
+
+    const channelLabelMapping: Record<typeof state.filters.channel, string> = {
+      "all": "All channels",
+      "display": "Display channel",
+      "email": "Email channel",
+      "search": "Search channel",
+    };
+
+    return `${dateLabelMapping[state.filters.dateRange]} · ${categoryLabelMapping[state.filters.category]} · ${channelLabelMapping[state.filters.channel]}`;
+  }
+  
+const getRevenueAriaLabel = () => {
+  const revenueText = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(revenue);
+
+  return `Revenue metric value ${revenueText}. ${getFilterSummaryText()}.`;
+};
 
   return (
     <main className="text-text-muted max-w-7xl py-12 px-4 mx-auto flex flex-col gap-8 sm:px-6 lg:px-8">
@@ -146,7 +179,8 @@ const DashboardShell = () => {
           <KPIWidget
             value={revenue}
             format="currency"
-            helperText={`Filtered by ${state.filters.dateRange}, ${state.filters.category}, ${state.filters.channel}`}
+            helperText={`Filtered by: ${getFilterSummaryText()}`}
+            ariaLabel={getRevenueAriaLabel()}
           />
         </article>
         <article className="bg-bg-surface p-6 rounded-lg shadow-md border border-border-default flex flex-col gap-y-2">

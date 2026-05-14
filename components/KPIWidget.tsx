@@ -2,6 +2,7 @@ type KPIWidgetProps = {
   value: number;
   format?: 'currency' | 'percent' | 'number';
   helperText?: string;
+  ariaLabel?: string;
 }
 
 const formatValue = (value: number, format: KPIWidgetProps['format'] = 'number') => {
@@ -24,9 +25,9 @@ const formatValue = (value: number, format: KPIWidgetProps['format'] = 'number')
   }
 };
 
-function KPIWidget({ value, format = 'number', helperText }: KPIWidgetProps) {
+function KPIWidget({ value, format = 'number', helperText, ariaLabel }: KPIWidgetProps) {
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col gap-y-2" aria-label={ariaLabel}>
       <p className="text-3xl md:text-4xl font-semibold text-text-strong tracking-tight">
         {formatValue(value, format)}
       </p>
